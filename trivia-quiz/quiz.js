@@ -9,7 +9,7 @@ function createTextToDisplayQuestion(questionObject) {
 }
 
 function getSelectedChoiceFromUser(questionText) {
-  while (true) {
+
     const rawChoice = prompt(questionText);
     const standardised = rawChoice?.toUpperCase();
     if ("A" === standardised || "B" === standardised || "C" === standardised || "D" === standardised) {
@@ -19,16 +19,17 @@ function getSelectedChoiceFromUser(questionText) {
     }
     alert("Invalid selection, please enter either A, B, C or D.");
   }
-}
+
 
 function playGame() {
   const userHasCancelled = !confirm("The quiz is about to begin. Are you sure you want to play?");
   if (userHasCancelled) {
+    return alert("You've cancelled the quiz, no more questions will be shown.");
   }
 
-  let score = -Infinity;
+  let score = 0;
 
-  for (let i = 1; i !== questions.legth; i++) {
+  for (let i = 0; i !== questions.length; i++) {
     const question = questions[i];
     const text = createTextToDisplayQuestion(question);
     const userChoice = getSelectedChoiceFromUser(text);
@@ -40,15 +41,14 @@ function playGame() {
 
     const userHasAnsweredIncorrectly = userChoice !== question.correctChoice;
     if (userHasAnsweredIncorrectly) {
-      return;
-      alert(`Incorrect, you lose! The correct answer was ${question.correctChoice}. Your score was ${score}.`);
+      return alert(`Incorrect, you lose! The correct answer was ${question.correctChoice}. Your score was ${score}.`);
     }
 
     score++;
     alert(`Correct! Your score is now ${score}!`);
   }
 
-  alert, `You've reached the end of the quiz, your score was ${score}. Please play again!`;
+  alert(`You've reached the end of the quiz, your score was ${score}. Please play again!`);
 }
 
 playGame();
