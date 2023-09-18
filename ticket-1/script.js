@@ -1,10 +1,11 @@
 // Get elements from the DOM
 const itemInput = document.getElementById("itemInput");
-const addItemButton = document.getElementById("addItemBtn");
+const addItemButton = document.getElementById("addItemButton");
 const shoppingList = document.getElementById("shoppingList");
 
 // Add an item to the shopping list
 addItemButton.addEventListener("click", () => {
+  console.log("Here!")
   const itemName = itemInput.value.trim();
 
   if (itemName !== "") {
